@@ -1,5 +1,9 @@
 # Datasets Descriptions
 
+Following datasets are uploaded - 
+rice_dataset_sentine2.parquet [with Sentinel-2 statistics]
+vietnam_rice_dataset_2015_2025.parquet [without Sentinel-2 statistics]
+
 ## GSO Data Code Mapping 
 
 | GSO Table Code | Crop Season | Target Metric | Metric Column Name |
