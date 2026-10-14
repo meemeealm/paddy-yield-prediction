@@ -1,22 +1,22 @@
 # Datasets Descriptions
 
-Following datasets are uploaded - 
-rice_dataset_sentine2.parquet [with Sentinel-2 statistics]
+Following datasets are available - 
+rice_dataset_sentine2.parquet [with Sentinel-2 statistics]  
 vietnam_rice_dataset_2015_2025.parquet [without Sentinel-2 statistics]
 
 ## GSO Data Code Mapping 
 
-| GSO Table Code | Crop Season | Target Metric | Metric Column Name |
+| GSO Table Code | Crop Season | Feature | Column Name |
 | :--- | :--- | :--- | :--- |
-| **E06.16** | Spring Rice | Planted Area | `planted_area_ha` |
-| **E06.17** | Spring Rice | Yield | `yield_ton_ha` |
-| **E06.18** | Spring Rice | Production | `production_tons` |
-| **E06.19** | Autumn Rice | Planted Area | `planted_area_ha` |
-| **E06.20** | Autumn Rice | Yield | `yield_ton_ha` |
-| **E06.21** | Autumn Rice | Production | `production_tons` |
-| **E06.22** | Winter Rice | Planted Area | `planted_area_ha` |
-| **E06.23** | Winter Rice | Yield | `yield_ton_ha` |
-| **E06.24** | Winter Rice | Production | `production_tons` |
+| **E06.16** | Spring  | Planted Area | `planted_area_ha` |
+| **E06.17** | Spring  | Yield | `yield_ton_ha` |
+| **E06.18** | Spring  | Production | `production_tons` |
+| **E06.19** | Autumn  | Planted Area | `planted_area_ha` |
+| **E06.20** | Autumn  | Yield | `yield_ton_ha` |
+| **E06.21** | Autumn  | Production | `production_tons` |
+| **E06.22** | Winter  | Planted Area | `planted_area_ha` |
+| **E06.23** | Winter  | Yield | `yield_ton_ha` |
+| **E06.24** | Winter  | Production | `production_tons` |
 
 ## Handling Missing Values in GSO data
 
