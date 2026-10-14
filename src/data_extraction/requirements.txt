@@ -1,0 +1,5 @@
+earthengine-api
+geemap
+pandas
+pyarrow
+python-dotenv

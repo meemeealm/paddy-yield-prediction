@@ -1,0 +1,56 @@
+experiment_name: "vietnam_rice_yield_spatial_tuning"
+data_path: "../../../data/vietnam_rice_dataset_2015_2025.parquet"
+additional_data: "../../../data/soil_climate_data.csv"
+
+target_col: "yield_ton_ha"
+group_col:
+  - "macro_region"
+  - "year"
+
+models:
+  xgboost_tuned:
+    class: "xgboost.XGBRegressor"
+    param_grid:
+      learning_rate: [0.01, 0.03, 0.05]
+      max_depth: [5, 7, 9]
+      n_estimators: [100, 150, 200]
+      colsample_bytree: [0.6, 0.8]
+      subsample: [0.8, 1.0]
+      random_state: [42]
+      n_jobs: [-1]
+
+  catboost_tuned:
+    class: "catboost.CatBoostRegressor"
+    param_grid:
+      depth: [4, 6, 8]
+      learning_rate: [0.01, 0.03, 0.05]
+      iterations: [150, 200, 300]
+      verbose: [0]
+      random_seed: [42]
+
+  lightgbm_tuned:
+    class: "lightgbm.LGBMRegressor"
+    param_grid:
+      learning_rate: [0.01, 0.03, 0.05]
+      max_depth: [5, 7, 9]
+      n_estimators: [100, 150, 200]
+      subsample: [0.8, 1.0]
+      colsample_bytree: [0.6, 0.8]
+      random_state: [42]
+      n_jobs: [-1]
+      verbose: [-1]
+
+  random_forest_tuned:
+    class: "sklearn.ensemble.RandomForestRegressor"
+    param_grid:
+      n_estimators: [100, 200]
+      max_depth: [10, 20]
+      min_samples_split: [2, 5]
+      random_state: [42]
+      n_jobs: [-1]
+
+  ridge_regression:
+    class: "sklearn.linear_model.Ridge"
+    param_grid:
+      alpha: [0.1, 1.0, 10.0, 100.0]
+      fit_intercept: [true, false]

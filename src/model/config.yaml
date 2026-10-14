@@ -1,0 +1,52 @@
+experiment_name: "vietnam_rice_yield_spatial_sentinel"
+data_path: "../data/rice_dataset_sentinel2.parquet"
+additional_data: "../data/soil_climate_data.csv"
+
+target_col: "yield_ton_ha"
+group_col: "province_name"        # CV folds keep all rows of a group together (see notes)
+keep_group_in_features: true   # keep province_name as a feature (like the notebook); false = drop group columns
+
+# Output folder. Change it per run so results are not overwritten (e.g. ablation without Sentinel-2)
+output_dir: "experiments_output"
+
+# Columns to leave out of the features. Empty = use everything.
+# Ablation run: uncomment the list below and set output_dir to "experiments_output_no_s2"
+# exclude_cols: []
+exclude_cols: ["NDVI_mean", "NDVI_max", "EVI_mean", "EVI_max", "LSWI_mean", "LSWI_min"]
+province_col: "province_name"     # merge key for additional_data + per-province error report
+
+# Held-out test: tune with grouped CV on years < test_year, report once on test_year
+test_year: 2025
+cv_folds: 5
+
+# Encoding (same as the notebook)
+target_encoded_cols: ["soil", "province_name"]
+onehot_cols: ["season", "macro_region"]
+
+models:
+  # Same parameters as the notebook's final winning model (GridSearch round 1; reg_lambda gave no gain)
+  xgboost_benchmark_params:
+    class: "xgboost.XGBRegressor"
+    params:
+      learning_rate: 0.05
+      max_depth: 7
+      n_estimators: 200
+      min_child_weight: 5
+      colsample_bytree: 0.8
+      subsample: 0.8
+      random_state: 42
+      n_jobs: -1
+
+  # 3 x 3 x 2 x 3 x 2 = 108 combinations x 5 folds = 540 fits.
+  # Every benchmark value is inside the grid, so the tuned model can match or beat it.
+  xgboost_tuned:
+    class: "xgboost.XGBRegressor"
+    param_grid:
+      learning_rate: [0.03, 0.05, 0.08]
+      max_depth: [6, 7, 9]
+      n_estimators: [200, 300]
+      min_child_weight: [3, 5, 8]
+      colsample_bytree: [0.6, 0.8]
+      subsample: [0.8]
+      random_state: [42]
+      n_jobs: [-1]

@@ -1,0 +1,26 @@
+[project]
+name = "paddy-yield-prediction"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "earthengine-api>=1.7.47",
+    "fastapi>=0.143.0",
+    "geopandas>=1.2.0",
+    "ipykernel>=7.4.0",
+    "joblib>=1.6.0",
+    "lightgbm>=4.7.0",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.3",
+    "pandas>=3.0.6",
+    "pyarrow>=26.0.0",
+    "python-dotenv>=1.2.4",
+    "pyyaml>=6.0.3",
+    "scikit-learn>=1.9.1",
+    "seaborn>=0.13.2",
+    "shap>=0.53.0",
+    "unidecode>=1.4.0",
+    "uvicorn>=0.54.0",
+    "xgboost>=3.4.1",
+]
